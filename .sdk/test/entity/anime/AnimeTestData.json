@@ -1,0 +1,14 @@
+{
+  "existing": {
+    "anime": {
+      "ANIME00": {},
+      "ANIME01": {},
+      "ANIME02": {}
+    }
+  },
+  "new": {
+    "anime": {
+      "anime_ref01": {}
+    }
+  }
+}

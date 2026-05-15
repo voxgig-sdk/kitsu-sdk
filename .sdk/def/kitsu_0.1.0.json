@@ -1,0 +1,362 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Kitsu API",
+    "description": "This API provides a JavaScript library to interact with kitsu.io, enabling users to search for and manage anime data. The library simplifies the process of fetching information about various anime titles, including details such as genre, episodes, and ratings.",
+    "version": "1.0.0",
+    "contact": {
+      "url": "https://github.com/l0v3m0n3y/kitsu"
+    }
+  },
+  "externalDocs": {
+    "description": "GitHub Repository",
+    "url": "https://github.com/l0v3m0n3y/kitsu"
+  },
+  "servers": [
+    {
+      "url": "https://kitsu.io/api/edge",
+      "description": "Kitsu.io API Server"
+    }
+  ],
+  "paths": {
+    "/anime": {
+      "get": {
+        "summary": "Search for anime",
+        "description": "Search for anime titles by name or keyword. Returns a list of anime matching the search query with details such as genre, episodes, and ratings.",
+        "operationId": "searchAnime",
+        "tags": [
+          "Anime"
+        ],
+        "parameters": [
+          {
+            "name": "filter[text]",
+            "in": "query",
+            "description": "Search query text to filter anime titles",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "tokyo"
+            }
+          },
+          {
+            "name": "page[limit]",
+            "in": "query",
+            "description": "Number of results to return per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 10,
+              "minimum": 1,
+              "maximum": 20
+            }
+          },
+          {
+            "name": "page[offset]",
+            "in": "query",
+            "description": "Number of results to skip for pagination",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 0,
+              "minimum": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with anime search results",
+            "content": {
+              "application/vnd.api+json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Anime"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "count": {
+                          "type": "integer",
+                          "description": "Total number of results"
+                        }
+                      }
+                    },
+                    "links": {
+                      "type": "object",
+                      "properties": {
+                        "first": {
+                          "type": "string",
+                          "description": "Link to first page"
+                        },
+                        "next": {
+                          "type": "string",
+                          "description": "Link to next page"
+                        },
+                        "last": {
+                          "type": "string",
+                          "description": "Link to last page"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid search parameters",
+            "content": {
+              "application/vnd.api+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/vnd.api+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Anime": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the anime"
+          },
+          "type": {
+            "type": "string",
+            "description": "Resource type",
+            "example": "anime"
+          },
+          "attributes": {
+            "type": "object",
+            "properties": {
+              "slug": {
+                "type": "string",
+                "description": "URL-friendly identifier"
+              },
+              "synopsis": {
+                "type": "string",
+                "description": "Brief description of the anime"
+              },
+              "canonicalTitle": {
+                "type": "string",
+                "description": "Official title of the anime"
+              },
+              "titles": {
+                "type": "object",
+                "description": "Anime titles in various languages",
+                "additionalProperties": {
+                  "type": "string"
+                }
+              },
+              "averageRating": {
+                "type": "string",
+                "description": "Average user rating"
+              },
+              "ratingRank": {
+                "type": "integer",
+                "description": "Ranking based on rating"
+              },
+              "popularityRank": {
+                "type": "integer",
+                "description": "Ranking based on popularity"
+              },
+              "startDate": {
+                "type": "string",
+                "format": "date",
+                "description": "Date when the anime started airing"
+              },
+              "endDate": {
+                "type": "string",
+                "format": "date",
+                "description": "Date when the anime ended airing"
+              },
+              "episodeCount": {
+                "type": "integer",
+                "description": "Total number of episodes"
+              },
+              "episodeLength": {
+                "type": "integer",
+                "description": "Average length of episodes in minutes"
+              },
+              "showType": {
+                "type": "string",
+                "description": "Type of anime (TV, movie, OVA, etc.)",
+                "enum": [
+                  "TV",
+                  "movie",
+                  "OVA",
+                  "ONA",
+                  "special",
+                  "music"
+                ]
+              },
+              "status": {
+                "type": "string",
+                "description": "Current airing status",
+                "enum": [
+                  "current",
+                  "finished",
+                  "tba",
+                  "unreleased",
+                  "upcoming"
+                ]
+              },
+              "ageRating": {
+                "type": "string",
+                "description": "Age rating classification"
+              },
+              "ageRatingGuide": {
+                "type": "string",
+                "description": "Explanation of the age rating"
+              },
+              "posterImage": {
+                "type": "object",
+                "description": "Poster images in various sizes",
+                "properties": {
+                  "tiny": {
+                    "type": "string",
+                    "format": "uri"
+                  },
+                  "small": {
+                    "type": "string",
+                    "format": "uri"
+                  },
+                  "medium": {
+                    "type": "string",
+                    "format": "uri"
+                  },
+                  "large": {
+                    "type": "string",
+                    "format": "uri"
+                  },
+                  "original": {
+                    "type": "string",
+                    "format": "uri"
+                  }
+                }
+              },
+              "coverImage": {
+                "type": "object",
+                "description": "Cover images in various sizes",
+                "properties": {
+                  "tiny": {
+                    "type": "string",
+                    "format": "uri"
+                  },
+                  "small": {
+                    "type": "string",
+                    "format": "uri"
+                  },
+                  "large": {
+                    "type": "string",
+                    "format": "uri"
+                  },
+                  "original": {
+                    "type": "string",
+                    "format": "uri"
+                  }
+                }
+              }
+            }
+          },
+          "relationships": {
+            "type": "object",
+            "description": "Related resources",
+            "properties": {
+              "genres": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "object",
+                    "properties": {
+                      "self": {
+                        "type": "string",
+                        "format": "uri"
+                      },
+                      "related": {
+                        "type": "string",
+                        "format": "uri"
+                      }
+                    }
+                  }
+                }
+              },
+              "categories": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "object",
+                    "properties": {
+                      "self": {
+                        "type": "string",
+                        "format": "uri"
+                      },
+                      "related": {
+                        "type": "string",
+                        "format": "uri"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "description": "Error title"
+                },
+                "detail": {
+                  "type": "string",
+                  "description": "Detailed error message"
+                },
+                "code": {
+                  "type": "string",
+                  "description": "Error code"
+                },
+                "status": {
+                  "type": "string",
+                  "description": "HTTP status code"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Anime",
+      "description": "Operations related to anime search and retrieval"
+    }
+  ]
+}

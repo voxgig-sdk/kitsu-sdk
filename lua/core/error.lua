@@ -1,0 +1,30 @@
+-- Kitsu SDK error
+
+local KitsuError = {}
+KitsuError.__index = KitsuError
+
+
+function KitsuError.new(code, msg, ctx)
+  local self = setmetatable({}, KitsuError)
+  self.is_sdk_error = true
+  self.sdk = "Kitsu"
+  self.code = code or ""
+  self.msg = msg or ""
+  self.ctx = ctx
+  self.result = nil
+  self.spec = nil
+  return self
+end
+
+
+function KitsuError:error()
+  return self.msg
+end
+
+
+function KitsuError:__tostring()
+  return self.msg
+end
+
+
+return KitsuError
