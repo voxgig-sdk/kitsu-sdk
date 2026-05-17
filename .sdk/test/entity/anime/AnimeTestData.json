@@ -1,9 +1,15 @@
 {
   "existing": {
     "anime": {
-      "ANIME00": {},
-      "ANIME01": {},
-      "ANIME02": {}
+      "ANIME00": {
+        "id": "ANIME00"
+      },
+      "ANIME01": {
+        "id": "ANIME01"
+      },
+      "ANIME02": {
+        "id": "ANIME02"
+      }
     }
   },
   "new": {

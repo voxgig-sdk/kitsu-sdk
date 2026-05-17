@@ -1,9 +1,9 @@
 package entity
 
 import (
-	"github.com/voxgig-sdk/kitsu-sdk/core"
+	"github.com/voxgig-sdk/kitsu-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/kitsu-sdk/go/utility/struct"
 )
 
 type AnimeEntity struct {

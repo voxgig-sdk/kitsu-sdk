@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/kitsu-sdk"
-	"github.com/voxgig-sdk/kitsu-sdk/core"
+	sdk "github.com/voxgig-sdk/kitsu-sdk/go"
+	"github.com/voxgig-sdk/kitsu-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/kitsu-sdk/go/utility/struct"
 )
 
 func TestAnimeEntity(t *testing.T) {

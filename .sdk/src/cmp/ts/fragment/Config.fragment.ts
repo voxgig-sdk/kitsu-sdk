@@ -29,7 +29,7 @@ class Config {
 
 
   options = {
-    base: 'https://kitsu.io/api/edge',
+    base: '$$main.kit.info.servers.0.url$$',
 
     'AUTHBLOCK'headers: 'HEADERS',
 

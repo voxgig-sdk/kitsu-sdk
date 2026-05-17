@@ -1,10 +1,10 @@
 package voxgigkitsusdk
 
 import (
-	"github.com/voxgig-sdk/kitsu-sdk/core"
-	"github.com/voxgig-sdk/kitsu-sdk/entity"
-	"github.com/voxgig-sdk/kitsu-sdk/feature"
-	_ "github.com/voxgig-sdk/kitsu-sdk/utility"
+	"github.com/voxgig-sdk/kitsu-sdk/go/core"
+	"github.com/voxgig-sdk/kitsu-sdk/go/entity"
+	"github.com/voxgig-sdk/kitsu-sdk/go/feature"
+	_ "github.com/voxgig-sdk/kitsu-sdk/go/utility"
 )
 
 // Type aliases preserve external API.
