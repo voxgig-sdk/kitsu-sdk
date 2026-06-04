@@ -105,14 +105,12 @@ func animeDirectSetup(mockres any) *animeDirectSetupResult {
 	env := envOverride(map[string]any{
 		"KITSU_TEST_ANIME_ENTID": map[string]any{},
 		"KITSU_TEST_LIVE":    "FALSE",
-		"KITSU_APIKEY":       "NONE",
 	})
 
 	live := env["KITSU_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["KITSU_APIKEY"],
 		}
 		client := sdk.NewKitsuSDK(mergedOpts)
 

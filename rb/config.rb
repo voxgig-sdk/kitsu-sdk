@@ -15,9 +15,6 @@ module KitsuConfig
       },
       "options" => {
         "base" => "https://kitsu.io/api/edge",
-        "auth" => {
-          "prefix" => "Bearer",
-        },
         "headers" => {
           "content-type" => "application/json",
         },

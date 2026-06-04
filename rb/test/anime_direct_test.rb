@@ -67,14 +67,12 @@ def anime_direct_setup(mockres)
   env = Runner.env_override({
     "KITSU_TEST_ANIME_ENTID" => {},
     "KITSU_TEST_LIVE" => "FALSE",
-    "KITSU_APIKEY" => "NONE",
   })
 
   live = env["KITSU_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
-      "apikey" => env["KITSU_APIKEY"],
     }
     client = KitsuSDK.new(merged_opts)
     return {

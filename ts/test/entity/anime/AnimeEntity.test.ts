@@ -113,7 +113,6 @@ function basicSetup(extra?: any) {
     'KITSU_TEST_ANIME_ENTID': idmap,
     'KITSU_TEST_LIVE': 'FALSE',
     'KITSU_TEST_EXPLAIN': 'FALSE',
-    'KITSU_APIKEY': 'NONE',
   })
 
   idmap = env['KITSU_TEST_ANIME_ENTID']
@@ -123,7 +122,6 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new KitsuSDK(merge([
       {
-        apikey: env.KITSU_APIKEY,
       },
       extra
     ]))
