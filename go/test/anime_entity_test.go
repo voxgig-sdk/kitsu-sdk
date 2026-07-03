@@ -117,6 +117,7 @@ func animeBasicSetup(extra map[string]any) *entityTestSetup {
 		"KITSU_TEST_ANIME_ENTID": idmap,
 		"KITSU_TEST_LIVE":      "FALSE",
 		"KITSU_TEST_EXPLAIN":   "FALSE",
+		"KITSU_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["KITSU_TEST_ANIME_ENTID"])
@@ -127,6 +128,7 @@ func animeBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["KITSU_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
+				"apikey": env["KITSU_APIKEY"],
 			},
 			extra,
 		})

@@ -16,18 +16,7 @@ main: {
       ]
       title: "Kitsu API"
       version: "1.0.0"
-      tagline: "Search and browse anime, manga, characters and user libraries from the kitsu.io community catalogue"
-      homepage: "https://kitsu.io"
-      docs_url: "https://kitsu.docs.apiary.io/"
-      about_md: `[Kitsu](https://kitsu.io) is a community-driven anime and manga catalogue that exposes a public JSON:API at \`https://kitsu.io/api/edge\`. The same API powers the Kitsu web and mobile clients, so it covers the catalogue, ratings, episode lists and related metadata used across the site.
-
-The API follows the [JSON:API](https://jsonapi.org/) specification, so resources are fetched at typed paths (for example \`/anime\`, \`/manga\`, \`/characters\`) and support standard query parameters such as \`filter[...]\`, \`sort\`, \`include\` and \`page[limit]\`. A typical search looks like \`GET /anime?filter[text]=tokyo\`.
-
-Operational notes: requests to the public catalogue endpoints do not require an API key, but write operations against user libraries require an OAuth access token. CORS is not enabled for the public edge, so browser apps generally call through a proxy or server.`
-      entity_desc: {
-        anime: "Anime series and films in the Kitsu catalogue, exposed as JSON:API resources at `/anime` with filters like `filter[text]` for search and standard `include` / `sort` parameters."
-      }
-      auth: false
     }
   }
 }
+

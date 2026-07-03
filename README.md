@@ -1,16 +1,8 @@
 # Kitsu SDK
 
-Search and browse anime, manga, characters and user libraries from the kitsu.io community catalogue
+Kitsu API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Kitsu API
-
-[Kitsu](https://kitsu.io) is a community-driven anime and manga catalogue that exposes a public JSON:API at `https://kitsu.io/api/edge`. The same API powers the Kitsu web and mobile clients, so it covers the catalogue, ratings, episode lists and related metadata used across the site.
-
-The API follows the [JSON:API](https://jsonapi.org/) specification, so resources are fetched at typed paths (for example `/anime`, `/manga`, `/characters`) and support standard query parameters such as `filter[...]`, `sort`, `include` and `page[limit]`. A typical search looks like `GET /anime?filter[text]=tokyo`.
-
-Operational notes: requests to the public catalogue endpoints do not require an API key, but write operations against user libraries require an OAuth access token. CORS is not enabled for the public edge, so browser apps generally call through a proxy or server.
 
 ## Try it
 
@@ -44,27 +36,31 @@ gem install kitsu-sdk
 luarocks install kitsu-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { KitsuSDK } from 'kitsu'
 
-const client = new KitsuSDK({})
+const client = new KitsuSDK({
+  apikey: process.env.KITSU_APIKEY,
+})
 
+// Load anime data
+const anime = await client.Anime().load({})
+console.log(anime.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -94,7 +90,7 @@ The API exposes one entity:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Anime** | Anime series and films in the Kitsu catalogue, exposed as JSON:API resources at `/anime` with filters like `filter[text]` for search and standard `include` / `sort` parameters. | `/anime` |
+| **Anime** |  | `/anime` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -104,15 +100,17 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from kitsu_sdk import KitsuSDK
 
-client = KitsuSDK({})
+client = KitsuSDK({
+    "apikey": os.environ.get("KITSU_APIKEY"),
+})
 
 
 # Load a specific anime
-anime, err = client.Anime(None).load(
-    {"id": "example_id"}, None
-)
+anime, err = client.Anime().load({"id": "example_id"})
+print(anime)
 ```
 
 ### PHP
@@ -121,13 +119,14 @@ anime, err = client.Anime(None).load(
 <?php
 require_once 'kitsu_sdk.php';
 
-$client = new KitsuSDK([]);
+$client = new KitsuSDK([
+    "apikey" => getenv("KITSU_APIKEY"),
+]);
 
 
 // Load a specific anime
-[$anime, $err] = $client->Anime(null)->load(
-    ["id" => "example_id"], null
-);
+[$anime, $err] = $client->Anime()->load(["id" => "example_id"]);
+print_r($anime);
 ```
 
 ### Golang
@@ -135,8 +134,13 @@ $client = new KitsuSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/kitsu-sdk/go"
 
-client := sdk.NewKitsuSDK(map[string]any{})
+client := sdk.NewKitsuSDK(map[string]any{
+    "apikey": os.Getenv("KITSU_APIKEY"),
+})
 
+// Load anime data
+anime, err := client.Anime(nil).Load(map[string]any{}, nil)
+fmt.Println(anime)
 ```
 
 ### Ruby
@@ -144,13 +148,14 @@ client := sdk.NewKitsuSDK(map[string]any{})
 ```ruby
 require_relative "Kitsu_sdk"
 
-client = KitsuSDK.new({})
+client = KitsuSDK.new({
+  "apikey" => ENV["KITSU_APIKEY"],
+})
 
 
 # Load a specific anime
-anime, err = client.Anime(nil).load(
-  { "id" => "example_id" }, nil
-)
+anime, err = client.Anime().load({ "id" => "example_id" })
+puts anime
 ```
 
 ### Lua
@@ -158,13 +163,14 @@ anime, err = client.Anime(nil).load(
 ```lua
 local sdk = require("kitsu_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("KITSU_APIKEY"),
+})
 
 
 -- Load a specific anime
-local anime, err = client:Anime(nil):load(
-  { id = "example_id" }, nil
-)
+local anime, err = client:Anime():load({ id = "example_id" })
+print(anime)
 ```
 
 ## Unit testing in offline mode
@@ -183,25 +189,21 @@ const result = await client.Anime().load({ id: 'test01' })
 ### Python
 
 ```python
-client = KitsuSDK.test(None, None)
-result, err = client.Anime(None).load(
-    {"id": "test01"}, None
-)
+client = KitsuSDK.test()
+result, err = client.Anime().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = KitsuSDK::test(null, null);
-[$result, $err] = $client->Anime(null)->load(
-    ["id" => "test01"], null
-);
+$client = KitsuSDK::test();
+[$result, $err] = $client->Anime()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Anime(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -210,19 +212,15 @@ result, err := client.Anime(nil).Load(
 ### Ruby
 
 ```ruby
-client = KitsuSDK.test(nil, nil)
-result, err = client.Anime(nil).load(
-  { "id" => "test01" }, nil
-)
+client = KitsuSDK.test
+result, err = client.Anime().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Anime(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Anime():load({ id = "test01" })
 ```
 
 ## How it works
@@ -326,11 +324,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Kitsu API
-
-- Upstream: [https://kitsu.io](https://kitsu.io)
-- API docs: [https://kitsu.docs.apiary.io/](https://kitsu.docs.apiary.io/)
 
 ---
 

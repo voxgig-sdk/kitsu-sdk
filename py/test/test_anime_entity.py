@@ -91,6 +91,7 @@ def _anime_basic_setup(extra):
         "KITSU_TEST_ANIME_ENTID": idmap,
         "KITSU_TEST_LIVE": "FALSE",
         "KITSU_TEST_EXPLAIN": "FALSE",
+        "KITSU_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -101,6 +102,7 @@ def _anime_basic_setup(extra):
     if env.get("KITSU_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
+                "apikey": env.get("KITSU_APIKEY"),
             },
             extra or {},
         ])
