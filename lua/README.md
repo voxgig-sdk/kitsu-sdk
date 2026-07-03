@@ -10,7 +10,7 @@ The Lua SDK for the Kitsu API — an entity-oriented client using Lua convention
 
 ## Install
 ```bash
-luarocks install kitsu-sdk
+luarocks install voxgig-sdk-kitsu
 ```
 
 If the module is not yet published, add the source directory to

@@ -10,7 +10,7 @@ The PHP SDK for the Kitsu API — an entity-oriented client using PHP convention
 
 ## Install
 ```bash
-composer require voxgig/kitsu-sdk
+composer require voxgig-sdk/kitsu
 ```
 
 

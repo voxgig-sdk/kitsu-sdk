@@ -10,13 +10,13 @@ The Ruby SDK for the Kitsu API — an entity-oriented client using idiomatic Rub
 
 ## Install
 ```bash
-gem install kitsu-sdk
+gem install voxgig-sdk-kitsu
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "kitsu-sdk"
+gem "voxgig-sdk-kitsu"
 ```
 
 Then run:

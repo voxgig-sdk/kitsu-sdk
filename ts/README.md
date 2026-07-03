@@ -10,7 +10,7 @@ The TypeScript SDK for the Kitsu API — a type-safe, entity-oriented client wit
 
 ## Install
 ```bash
-npm install kitsu
+npm install @voxgig-sdk/kitsu
 ```
 ## Tutorial: your first API call
 

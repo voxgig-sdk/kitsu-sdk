@@ -10,7 +10,7 @@ The Python SDK for the Kitsu API — an entity-oriented client following Pythoni
 
 ## Install
 ```bash
-pip install kitsu-sdk
+pip install voxgig-sdk-kitsu
 ```
 
 Or install from source:

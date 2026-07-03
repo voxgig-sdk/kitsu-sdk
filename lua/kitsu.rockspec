@@ -8,12 +8,14 @@ source = {
   dir = "kitsu-sdk/lua"
 }
 description = {
-  summary = "Kitsu SDK for Lua",
-  license = "MIT"
+  summary = "Unofficial generated Lua SDK for the Kitsu public API. Not affiliated with or endorsed by the upstream API provider.",
+  homepage = "https://github.com/voxgig-sdk/kitsu-sdk",
+  issues_url = "https://github.com/voxgig-sdk/kitsu-sdk/issues",
+  license = "MIT",
+  labels = { "voxgig", "sdk", "generated-sdk", "openapi", "api-client", "kitsu" }
 }
 dependencies = {
   "lua >= 5.3",
-  "dkjson >= 2.5",
   "dkjson >= 2.5",
 }
 build = {
