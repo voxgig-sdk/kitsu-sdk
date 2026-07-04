@@ -30,11 +30,14 @@ const client = new KitsuSDK()
 
 ### 3. Load an anime
 
-```ts
-const result = await client.anime.load({ id: 'example_id' })
+`load()` returns the entity directly and throws on failure:
 
-if (result.ok) {
-  console.log(result.data)
+```ts
+try {
+  const anime = await client.Anime().load({ id: 'example_id' })
+  console.log(anime)
+} catch (err) {
+  console.error('load failed:', err)
 }
 ```
 
@@ -52,6 +55,9 @@ const result = await client.direct({
   params: { id: 'example' },
 })
 
+if (result instanceof Error) {
+  throw result
+}
 if (result.ok) {
   console.log(result.status)  // 200
   console.log(result.data)    // response body
@@ -80,9 +86,9 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = KitsuSDK.test()
 
-const result = await client.anime.load({ id: 'test01' })
-// result.ok === true
-// result.data contains mock response data
+const anime = await client.Anime().load({ id: 'test01' })
+// anime is a bare entity populated with mock response data
+console.log(anime)
 ```
 
 You can also use the instance method:
@@ -97,7 +103,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.anime
+const entity = client.Anime()
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -175,7 +181,7 @@ new KitsuSDK(options?: {
 | `utility()` | `Utility` | Deep copy of the SDK utility object. |
 | `prepare(fetchargs?)` | `Promise<FetchDef>` | Build an HTTP request definition without sending it. |
 | `direct(fetchargs?)` | `Promise<DirectResult>` | Build and send an HTTP request. |
-| `Anime(data?)` | `AnimeEntity` | Create a Anime entity instance. |
+| `Anime(data?)` | `AnimeEntity` | Create an Anime entity instance. |
 | `tester(testopts?, sdkopts?)` | `KitsuSDK` | Create a test-mode client instance. |
 
 #### Static methods
@@ -192,29 +198,30 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `load(reqmatch?, ctrl?): Promise<Result>` | Load a single entity by match criteria. |
-| `list` | `list(reqmatch?, ctrl?): Promise<Result>` | List entities matching the criteria. |
-| `create` | `create(reqdata?, ctrl?): Promise<Result>` | Create a new entity. |
-| `update` | `update(reqdata?, ctrl?): Promise<Result>` | Update an existing entity. |
-| `remove` | `remove(reqmatch?, ctrl?): Promise<Result>` | Remove an entity. |
+| `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria. |
+| `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria. |
+| `create` | `create(reqdata?, ctrl?): Promise<Entity>` | Create a new entity. |
+| `update` | `update(reqdata?, ctrl?): Promise<Entity>` | Update an existing entity. |
+| `remove` | `remove(reqmatch?, ctrl?): Promise<void>` | Remove an entity. |
 | `data` | `data(data?): any` | Get or set entity data. |
 | `match` | `match(match?): any` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
 | `client` | `client(): KitsuSDK` | Return the parent SDK client. |
 | `entopts` | `entopts(): object` | Return a copy of the entity options. |
 
-#### Result shape
+#### Return values
 
-All entity operations return a Result object:
+Entity operations resolve to the entity data directly — there is no
+result envelope:
 
-```ts
-{
-  ok: boolean      // true if the HTTP status is 2xx
-  status: number   // HTTP status code
-  headers: object  // response headers
-  data: any        // parsed JSON response body
-}
-```
+- `load`, `create` and `update` resolve to a single entity object.
+- `list` resolves to an **array** of entity objects (iterate it directly;
+  there is no `.data` and no `.ok`).
+- `remove` resolves to `void`.
+
+On a failed request these methods **throw**, so wrap calls in
+`try`/`catch` to handle errors. Only `direct()` returns the result
+envelope described below.
 
 ### DirectResult shape
 
@@ -262,7 +269,7 @@ API path: `/anime`
 
 ### Anime
 
-Create an instance: `const anime = client.anime`
+Create an instance: `const anime = client.Anime()`
 
 #### Operations
 
@@ -273,7 +280,7 @@ Create an instance: `const anime = client.anime`
 #### Example: Load
 
 ```ts
-const anime = await client.anime.load({ id: 'anime_id' })
+const anime = await client.Anime().load({ id: 'anime_id' })
 ```
 
 
@@ -344,7 +351,7 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const anime = client.anime
+const anime = client.Anime()
 await anime.load({ id: "example_id" })
 
 // anime.data() now returns the loaded anime data

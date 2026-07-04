@@ -32,8 +32,9 @@ client = KitsuSDK.new
 
 ```ruby
 begin
-  result = client.anime.load({ "id" => "example_id" })
-  puts result
+  # load returns the bare Anime record (raises on error).
+  anime = client.Anime.load({ "id" => "example_id" })
+  puts anime
 rescue => err
   warn "load failed: #{err}"
 end
@@ -80,13 +81,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = KitsuSDK.test
+client = KitsuSDK.test({
+  "entity" => { "anime" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.anime.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+anime = client.Anime.load({ "id" => "test01" })
+puts anime
 ```
 
 ### Use a custom fetch function
@@ -162,7 +167,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> Hash` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> Hash` | Build and send an HTTP request. Returns a result hash (`result["ok"]`); does not raise. |
-| `Anime` | `(data) -> AnimeEntity` | Create a Anime entity instance. |
+| `Anime` | `(data) -> AnimeEntity` | Create an Anime entity instance. |
 
 ### Entity interface
 
@@ -217,7 +222,7 @@ API path: `/anime`
 
 ### Anime
 
-Create an instance: `const anime = client.anime`
+Create an instance: `anime = client.Anime`
 
 #### Operations
 
@@ -227,8 +232,9 @@ Create an instance: `const anime = client.anime`
 
 #### Example: Load
 
-```ts
-const anime = await client.anime.load({ id: 'anime_id' })
+```ruby
+# load returns the bare Anime record (raises on error).
+anime = client.Anime.load({ "id" => "anime_id" })
 ```
 
 
@@ -303,7 +309,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-anime = client.anime
+anime = client.Anime
 anime.load({ "id" => "example_id" })
 
 # anime.data_get now returns the loaded anime data

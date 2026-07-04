@@ -80,7 +80,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## AnimeEntity
 
 ```python
-anime = client.anime
+anime = client.Anime()
 ```
 
 ### Operations
@@ -90,7 +90,7 @@ anime = client.anime
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.anime.load({"id": "anime_id"})
+result = client.Anime().load({"id": "anime_id"})
 ```
 
 ### Common Methods

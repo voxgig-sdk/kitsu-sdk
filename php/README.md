@@ -33,9 +33,10 @@ $client = new KitsuSDK();
 
 ```php
 try {
-    $result = $client->anime()->load(["id" => "example_id"]);
-    print_r($result);
-} catch (\Exception $err) {
+    // load() returns the bare Anime record (throws on error).
+    $anime = $client->Anime()->load(["id" => "example_id"]);
+    print_r($anime);
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -81,13 +82,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = KitsuSDK::test();
+$client = KitsuSDK::test([
+    "entity" => ["anime" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->anime()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$anime = $client->Anime()->load(["id" => "test01"]);
+print_r($anime);
 ```
 
 ### Use a custom fetch function
@@ -166,7 +171,7 @@ Creates a test-mode client with mock transport. Both arguments may be `null`.
 | `get_utility` | `(): Utility` | Copy of the SDK utility object. |
 | `prepare` | `(array $fetchargs): array` | Build an HTTP request definition without sending. |
 | `direct` | `(array $fetchargs): array` | Build and send an HTTP request. |
-| `Anime` | `($data): AnimeEntity` | Create a Anime entity instance. |
+| `Anime` | `($data): AnimeEntity` | Create an Anime entity instance. |
 
 ### Entity interface
 
@@ -222,7 +227,7 @@ API path: `/anime`
 
 ### Anime
 
-Create an instance: `const anime = client.anime`
+Create an instance: `$anime = $client->Anime();`
 
 #### Operations
 
@@ -232,8 +237,9 @@ Create an instance: `const anime = client.anime`
 
 #### Example: Load
 
-```ts
-const anime = await client.anime.load({ id: 'anime_id' })
+```php
+// load() returns the bare Anime record (throws on error).
+$anime = $client->Anime()->load(["id" => "anime_id"]);
 ```
 
 
@@ -308,7 +314,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$anime = $client->anime();
+$anime = $client->Anime();
 $anime->load(["id" => "example_id"]);
 
 // $anime->dataGet() now returns the loaded anime data

@@ -109,7 +109,7 @@ Alias for `KitsuSDK.test()`.
 ## AnimeEntity
 
 ```ts
-const anime = client.anime
+const anime = client.Anime()
 ```
 
 ### Operations
@@ -119,7 +119,7 @@ const anime = client.anime
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.anime.load({ id: 'anime_id' })
+const result = await client.Anime().load({ id: 'anime_id' })
 ```
 
 ### Common Methods

@@ -85,7 +85,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## AnimeEntity
 
 ```php
-$anime = $client->anime();
+$anime = $client->Anime();
 ```
 
 ### Operations
@@ -95,7 +95,7 @@ $anime = $client->anime();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->anime()->load(["id" => "anime_id"]);
+$result = $client->Anime()->load(["id" => "anime_id"]);
 ```
 
 ### Common Methods

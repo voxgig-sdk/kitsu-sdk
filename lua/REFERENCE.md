@@ -83,7 +83,7 @@ same parameters as `direct()`.
 ## AnimeEntity
 
 ```lua
-local anime = client:anime(nil)
+local anime = client:Anime(nil)
 ```
 
 ### Operations
@@ -93,7 +93,7 @@ local anime = client:anime(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:anime():load({ id = "anime_id" })
+local result, err = client:Anime():load({ id = "anime_id" })
 ```
 
 ### Common Methods
