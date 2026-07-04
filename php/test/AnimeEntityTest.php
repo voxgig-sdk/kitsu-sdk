@@ -49,8 +49,7 @@ class AnimeEntityTest extends TestCase
         // LOAD
         $anime_ref01_ent = $client->Anime(null);
         $anime_ref01_match_dt0 = [];
-        [$anime_ref01_data_dt0_loaded, $err] = $anime_ref01_ent->load($anime_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $anime_ref01_data_dt0_loaded = $anime_ref01_ent->load($anime_ref01_match_dt0, null);
         $this->assertNotNull($anime_ref01_data_dt0_loaded);
 
     }
@@ -85,7 +84,6 @@ function anime_basic_setup($extra)
         "KITSU_TEST_ANIME_ENTID" => $idmap,
         "KITSU_TEST_LIVE" => "FALSE",
         "KITSU_TEST_EXPLAIN" => "FALSE",
-        "KITSU_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -97,7 +95,6 @@ function anime_basic_setup($extra)
     if ($env["KITSU_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["KITSU_APIKEY"],
             ],
             $extra ?? [],
         ]);

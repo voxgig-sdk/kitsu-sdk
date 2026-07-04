@@ -78,14 +78,12 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'KITSU_TEST_ANIME_ENTID': {},
     'KITSU_TEST_LIVE': 'FALSE',
-    'KITSU_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.KITSU_TEST_LIVE
 
   if (live) {
     const client = new KitsuSDK({
-      apikey: env.KITSU_APIKEY,
     })
 
     let idmap: any = env['KITSU_TEST_ANIME_ENTID']

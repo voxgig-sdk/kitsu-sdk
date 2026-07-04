@@ -245,6 +245,9 @@ func (sdk *KitsuSDK) Direct(fetchargs map[string]any) (map[string]any, error) {
 }
 
 
+// Anime returns a Anime entity bound to this client.
+// Idiomatic usage: client.Anime(nil).List(nil, nil) or
+// client.Anime(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *KitsuSDK) Anime(data map[string]any) KitsuEntity {
 	return NewAnimeEntityFunc(sdk, data)
 }

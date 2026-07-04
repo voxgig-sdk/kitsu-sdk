@@ -49,8 +49,7 @@ class TestAnimeEntity:
         # LOAD
         anime_ref01_ent = client.Anime(None)
         anime_ref01_match_dt0 = {}
-        anime_ref01_data_dt0_loaded, err = anime_ref01_ent.load(anime_ref01_match_dt0, None)
-        assert err is None
+        anime_ref01_data_dt0_loaded = anime_ref01_ent.load(anime_ref01_match_dt0, None)
         assert anime_ref01_data_dt0_loaded is not None
 
 
@@ -91,7 +90,6 @@ def _anime_basic_setup(extra):
         "KITSU_TEST_ANIME_ENTID": idmap,
         "KITSU_TEST_LIVE": "FALSE",
         "KITSU_TEST_EXPLAIN": "FALSE",
-        "KITSU_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,7 +100,6 @@ def _anime_basic_setup(extra):
     if env.get("KITSU_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("KITSU_APIKEY"),
             },
             extra or {},
         ])

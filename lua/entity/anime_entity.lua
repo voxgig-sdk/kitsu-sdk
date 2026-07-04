@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch AnimeLoadMatch
+---@param ctrl? table
+---@return Anime
+---@return string? err
 function AnimeEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

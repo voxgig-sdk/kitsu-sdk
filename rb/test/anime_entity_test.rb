@@ -42,8 +42,7 @@ class AnimeEntityTest < Minitest::Test
     # LOAD
     anime_ref01_ent = client.Anime(nil)
     anime_ref01_match_dt0 = {}
-    anime_ref01_data_dt0_loaded, err = anime_ref01_ent.load(anime_ref01_match_dt0, nil)
-    assert_nil err
+    anime_ref01_data_dt0_loaded = anime_ref01_ent.load(anime_ref01_match_dt0, nil)
     assert !anime_ref01_data_dt0_loaded.nil?
 
   end
@@ -82,7 +81,6 @@ def anime_basic_setup(extra)
     "KITSU_TEST_ANIME_ENTID" => idmap,
     "KITSU_TEST_LIVE" => "FALSE",
     "KITSU_TEST_EXPLAIN" => "FALSE",
-    "KITSU_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -94,7 +92,6 @@ def anime_basic_setup(extra)
   if env["KITSU_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["KITSU_APIKEY"],
       },
       extra || {},
     ])

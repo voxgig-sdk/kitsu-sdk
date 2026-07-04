@@ -9,12 +9,9 @@ The Lua SDK for the Kitsu API — an entity-oriented client using Lua convention
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-kitsu
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/kitsu-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -31,15 +28,13 @@ loading a specific record.
 ```lua
 local sdk = require("kitsu_sdk")
 
-local client = sdk.new({
-  apikey = os.getenv("KITSU_APIKEY"),
-})
+local client = sdk.new()
 ```
 
-### 3. Load a anime
+### 3. Load an anime
 
 ```lua
-local result, err = client:Anime():load({ id = "example_id" })
+local result, err = client:anime():load({ id = "example_id" })
 if err then error(err) end
 print(result)
 ```
@@ -87,7 +82,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Kitsu():load({ id = "test01" })
+local result, err = client:anime():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -121,7 +116,6 @@ Create a `.env.local` file at the project root:
 
 ```
 KITSU_TEST_LIVE=TRUE
-KITSU_APIKEY=<your-key>
 ```
 
 Then run:
@@ -144,7 +138,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -220,7 +213,7 @@ API path: `/anime`
 
 ### Anime
 
-Create an instance: `const anime = client.Anime()`
+Create an instance: `const anime = client.anime`
 
 #### Operations
 
@@ -231,7 +224,7 @@ Create an instance: `const anime = client.Anime()`
 #### Example: Load
 
 ```ts
-const anime = await client.Anime().load({ id: 'anime_id' })
+const anime = await client.anime.load({ id: 'anime_id' })
 ```
 
 
@@ -306,11 +299,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local anime = client:anime()
+anime:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- anime:data_get() now returns the loaded anime data
+-- anime:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration
