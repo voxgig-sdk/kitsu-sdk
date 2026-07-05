@@ -93,7 +93,7 @@ local anime = client:Anime(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Anime():load({ id = "anime_id" })
+local result, err = client:Anime():load()
 ```
 
 ### Common Methods

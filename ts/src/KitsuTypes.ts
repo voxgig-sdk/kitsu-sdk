@@ -8,5 +8,6 @@
 export interface Anime {
 }
 
-export type AnimeLoadMatch = Partial<Anime>
+export interface AnimeLoadMatch {
+}
 

@@ -100,7 +100,7 @@ anime := client.Anime(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Anime(nil).Load(map[string]any{"id": "anime_id"}, nil)
+result, err := client.Anime(nil).Load(nil, nil)
 ```
 
 ### Common Methods

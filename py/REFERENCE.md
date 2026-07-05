@@ -90,7 +90,7 @@ anime = client.Anime()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Anime().load({"id": "anime_id"})
+result = client.Anime().load()
 ```
 
 ### Common Methods

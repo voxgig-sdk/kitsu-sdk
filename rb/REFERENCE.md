@@ -8,7 +8,7 @@ Complete API reference for the Kitsu Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'kitsu_sdk'
+require_relative 'Kitsu_sdk'
 
 client = KitsuSDK.new(options)
 ```
@@ -96,7 +96,7 @@ anime = client.Anime
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Anime.load({ "id" => "anime_id" })
+result = client.Anime.load()
 ```
 
 ### Common Methods

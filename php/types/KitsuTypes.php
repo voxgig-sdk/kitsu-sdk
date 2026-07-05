@@ -17,7 +17,7 @@ class Anime
 {
 }
 
-/** Match filter for Anime#load (any subset of Anime fields). */
+/** Request payload for Anime#load. */
 class AnimeLoadMatch
 {
 }

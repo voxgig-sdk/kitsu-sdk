@@ -12,8 +12,7 @@ import "encoding/json"
 type Anime struct {
 }
 
-// AnimeLoadMatch mirrors the anime fields as an all-optional match
-// filter (Go analog of Partial<Anime>).
+// AnimeLoadMatch is the typed request payload for Anime.LoadTyped.
 type AnimeLoadMatch struct {
 }
 

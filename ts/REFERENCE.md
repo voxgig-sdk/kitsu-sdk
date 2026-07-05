@@ -119,7 +119,7 @@ const anime = client.Anime()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Anime().load({ id: 'anime_id' })
+const result = await client.Anime().load()
 ```
 
 ### Common Methods
