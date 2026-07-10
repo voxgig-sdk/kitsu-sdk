@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -223,14 +220,17 @@
           "url": "https://github.com/l0v3m0n3y/kitsu"
         },
         "description": "This API provides a JavaScript library to interact with kitsu.io, enabling users to search for and manage anime data. The library simplifies the process of fetching information about various anime titles, including details such as genre, episodes, and ratings.",
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "description": "Kitsu.io API Server",
             "url": "https://kitsu.io/api/edge"
           }
         ],
+        "summary": "This API provides a JavaScript library to interact with kitsu.io, enabling users to search for and manage anime data.",
         "title": "Kitsu API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "website": "https://github.com/l0v3m0n3y/kitsu"
       },
       "option": {},
       "target": {
@@ -283,6 +283,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -333,6 +336,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

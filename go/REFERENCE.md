@@ -91,6 +91,7 @@ same parameters as `Direct()`.
 
 ```go
 anime := client.Anime(nil)
+fmt.Println(anime.GetName()) // "anime"
 ```
 
 ### Operations
@@ -101,6 +102,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Anime(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods

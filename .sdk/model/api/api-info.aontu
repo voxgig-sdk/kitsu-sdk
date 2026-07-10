@@ -15,9 +15,9 @@ main: {
           url: "https://kitsu.io/api/edge"
         }
       ]
+      summary: "This API provides a JavaScript library to interact with kitsu.io, enabling users to search for and manage anime data."
       title: "Kitsu API"
       version: "1.0.0"
+      website: "https://github.com/l0v3m0n3y/kitsu"
     }
   }
-}
-
