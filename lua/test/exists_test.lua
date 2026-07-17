@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- Kitsu SDK exists test
 
 local sdk = require("kitsu_sdk")
 
