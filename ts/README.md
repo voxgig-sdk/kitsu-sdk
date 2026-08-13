@@ -121,7 +121,8 @@ Create a mock client for unit testing — no server required:
 const client = KitsuSDK.test()
 
 const anime = await client.Anime().load()
-// anime is a bare entity populated with mock response data
+// anime is the entity, populated with mock response data
+// — call anime.data() for the record itself
 console.log(anime)
 ```
 

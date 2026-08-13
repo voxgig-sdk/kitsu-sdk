@@ -16,11 +16,11 @@
 import pytest
 
 from kitsu_sdk import KitsuSDK
-from core.error import KitsuError
-from core.result import KitsuResult
-from core.response import KitsuResponse
-from core.spec import KitsuSpec
-from feature.base_feature import KitsuBaseFeature
+from kitsu_sdk.core.error import KitsuError
+from kitsu_sdk.core.result import KitsuResult
+from kitsu_sdk.core.response import KitsuResponse
+from kitsu_sdk.core.spec import KitsuSpec
+from kitsu_sdk.feature.base_feature import KitsuBaseFeature
 
 
 def _client():

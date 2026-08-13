@@ -34,7 +34,7 @@ client = KitsuSDK.new
 
 ```ruby
 begin
-  # load returns the bare Anime record (raises on error).
+  # load returns the ENTITY — call data_get for the Anime record (raises on error).
   anime = client.Anime.load()
   puts anime
 rescue => err
@@ -117,7 +117,8 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = KitsuSDK.test
 
-# Entity ops return the bare mock record (raises on error).
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
 anime = client.Anime.load()
 puts anime
 ```
@@ -257,7 +258,7 @@ Create an instance: `anime = client.Anime`
 #### Example: Load
 
 ```ruby
-# load returns the bare Anime record (raises on error).
+# load returns the ENTITY — call data_get for the Anime record (raises on error).
 anime = client.Anime.load()
 ```
 

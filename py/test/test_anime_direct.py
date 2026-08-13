@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from kitsu_sdk.utility.voxgig_struct import voxgig_struct as vs
 from kitsu_sdk import KitsuSDK
-from core import helpers
+from kitsu_sdk.core import helpers
 from test import runner
 
 

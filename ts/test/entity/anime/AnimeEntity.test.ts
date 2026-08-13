@@ -62,7 +62,7 @@ describe('AnimeEntity', async () => {
     // LOAD
     const anime_ref01_ent = client.Anime()
     const anime_ref01_match_dt0: any = {}
-    const anime_ref01_data_dt0 = await anime_ref01_ent.load(anime_ref01_match_dt0)
+    const anime_ref01_data_dt0 = (await anime_ref01_ent.load(anime_ref01_match_dt0)).data()
     assert(null != anime_ref01_data_dt0)
 
 

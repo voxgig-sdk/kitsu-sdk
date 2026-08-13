@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# Kitsu SDK exists test
 
 import pytest
 from kitsu_sdk import KitsuSDK

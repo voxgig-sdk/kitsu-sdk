@@ -64,6 +64,7 @@ module KitsuConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/anime",
                   "parts" => [
