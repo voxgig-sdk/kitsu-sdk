@@ -40,7 +40,7 @@ class KitsuSDK
         $utility = new KitsuUtility();
         $this->_utility = $utility;
 
-        $config = KitsuConfig::make_config();
+        $config = KitsuConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

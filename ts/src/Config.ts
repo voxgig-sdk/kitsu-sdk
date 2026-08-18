@@ -36,7 +36,7 @@ class Config {
 
 
   options = {
-    base: 'https://kitsu.io/api/edge',
+    base: "https://kitsu.io/api/edge",
 
     headers: {
       "content-type": "application/json"
@@ -61,11 +61,9 @@ class Config {
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "example": "tokyo",
                     "kind": "query",
                     "name": "filter_text",
@@ -74,21 +72,17 @@ class Config {
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": 10,
                     "kind": "query",
                     "name": "page_limit",
                     "orig": "page_limit",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "example": 0,
                     "kind": "query",
                     "name": "page_offset",
                     "orig": "page_offset",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   }
                 ]
@@ -109,11 +103,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {

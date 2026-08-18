@@ -15,7 +15,7 @@ require_relative "../Kitsu_sdk"
 module KitsuFeatureHarness
   # True when this SDK was generated with the named feature.
   def self.has_feature?(name)
-    f = KitsuConfig.make_config["feature"]
+    f = KitsuConfig.shared_config["feature"]
     f.is_a?(Hash) && !f[name].nil?
   end
 

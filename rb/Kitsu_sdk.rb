@@ -28,7 +28,7 @@ class KitsuSDK
     utility = KitsuUtility.new
     @_utility = utility
 
-    config = KitsuConfig.make_config
+    config = KitsuConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,
