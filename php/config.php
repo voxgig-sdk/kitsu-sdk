@@ -33,6 +33,9 @@ class KitsuConfig
         return [
             "main" => [
                 "name" => "Kitsu",
+                "slug" => "kitsu",
+                "version" => "0.0.1",
+                "target" => "php",
             ],
             "feature" => [
                 "test" => [
