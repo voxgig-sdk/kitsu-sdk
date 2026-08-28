@@ -9,6 +9,9 @@
 ---@class Anime
 
 ---@class AnimeLoadMatch
+---@field filter_text string
+---@field page_limit? number
+---@field page_offset? number
 
 local M = {}
 

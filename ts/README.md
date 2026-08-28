@@ -39,7 +39,7 @@ const client = new KitsuSDK()
 
 ```ts
 try {
-  const anime = await client.Anime().load()
+  const anime = await client.Anime().load({ filter_text: 'example_filter_text' })
   console.log(anime)
 } catch (err) {
   console.error('load failed:', err)
@@ -53,7 +53,7 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const anime = await client.Anime().load()
+  const anime = await client.Anime().load({ filter_text: "example" })
   console.log(anime)
 } catch (err) {
   console.error('load failed:', err)
@@ -120,7 +120,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = KitsuSDK.test()
 
-const anime = await client.Anime().load()
+const anime = await client.Anime().load({ filter_text: 'example_filter_text' })
 // anime is the entity, populated with mock response data
 // — call anime.data() for the record itself
 console.log(anime)
@@ -141,7 +141,7 @@ Entity instances remember their last match and data:
 const entity = client.Anime()
 
 // First call runs the operation and stores its result
-await entity.load()
+await entity.load({ filter_text: 'example_filter_text' })
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
@@ -308,8 +308,31 @@ Create an instance: `const anime = client.Anime()`
 #### Example: Load
 
 ```ts
-const anime = await client.Anime().load()
+const anime = await client.Anime().load({ filter_text: 'filter_text' })
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced
@@ -382,7 +405,7 @@ calls on the same instance can rely on this state.
 
 ```ts
 const anime = client.Anime()
-await anime.load()
+await anime.load({ filter_text: "example" })
 
 // anime.data() now returns the anime data from the last `load`
 // anime.match() returns the last match criteria

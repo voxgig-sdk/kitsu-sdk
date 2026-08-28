@@ -18,6 +18,9 @@ type Anime struct {
 
 // AnimeLoadMatch is the typed request payload for Anime.LoadTyped.
 type AnimeLoadMatch struct {
+	FilterText string `json:"filter_text"`
+	PageLimit *int `json:"page_limit,omitempty"`
+	PageOffset *int `json:"page_offset,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

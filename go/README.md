@@ -51,7 +51,7 @@ func main() {
     client := sdk.New()
 
     // Load a single anime — the value is the loaded record.
-    anime, err := client.Anime(nil).Load(nil, nil)
+    anime, err := client.Anime(nil).Load(map[string]any{"filter_text": "example_filter_text"}, nil)
     if err != nil {
         panic(err)
     }
@@ -66,7 +66,7 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-anime, err := client.Anime(nil).Load(nil, nil)
+anime, err := client.Anime(nil).Load(map[string]any{"filter_text": "example"}, nil)
 if err != nil {
     // handle err
     return
@@ -136,7 +136,7 @@ Create a mock client for unit testing — no server required:
 client := sdk.Test()
 
 anime, err := client.Anime(nil).Load(
-    nil, nil,
+    map[string]any{"filter_text": "example"}, nil,
 )
 if err != nil {
     panic(err)
@@ -281,12 +281,35 @@ Create an instance: `anime := client.Anime(nil)`
 #### Example: Load
 
 ```go
-anime, err := client.Anime(nil).Load(nil, nil)
+anime, err := client.Anime(nil).Load(map[string]any{"filter_text": "filter_text"}, nil)
 if err != nil {
     panic(err)
 }
 fmt.Println(anime) // the loaded record
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced
@@ -363,7 +386,7 @@ stores the returned data and match criteria internally.
 
 ```go
 anime := client.Anime(nil)
-anime.Load(nil, nil)
+anime.Load(map[string]any{"filter_text": "example"}, nil)
 
 // anime.Data() now returns the anime data from the last load
 // anime.Match() returns the last match criteria

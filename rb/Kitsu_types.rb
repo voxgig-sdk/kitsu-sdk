@@ -13,6 +13,19 @@ class Anime
 end
 
 # Request payload for Anime#load.
-class AnimeLoadMatch
-end
+#
+# @!attribute [rw] filter_text
+#   @return [String]
+#
+# @!attribute [rw] page_limit
+#   @return [Integer, nil]
+#
+# @!attribute [rw] page_offset
+#   @return [Integer, nil]
+AnimeLoadMatch = Struct.new(
+  :filter_text,
+  :page_limit,
+  :page_offset,
+  keyword_init: true
+)
 

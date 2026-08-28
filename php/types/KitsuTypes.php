@@ -20,5 +20,8 @@ class Anime
 /** Request payload for Anime#load. */
 class AnimeLoadMatch
 {
+    public string $filter_text;
+    public ?int $page_limit = null;
+    public ?int $page_offset = null;
 }
 

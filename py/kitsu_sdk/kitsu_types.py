@@ -20,5 +20,10 @@ class Anime(TypedDict):
     pass
 
 
-class AnimeLoadMatch(TypedDict):
-    pass
+class AnimeLoadMatchRequired(TypedDict):
+    filter_text: str
+
+
+class AnimeLoadMatch(AnimeLoadMatchRequired, total=False):
+    page_limit: int
+    page_offset: int
