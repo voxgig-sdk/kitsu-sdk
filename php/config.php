@@ -93,8 +93,10 @@ class KitsuConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/anime',
-                  'parts' => [
-                    'anime',
+                  'segments' => [
+                    [
+                      'lit' => 'anime',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -106,6 +108,9 @@ class KitsuConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'anime',
                   ],
                 ],
               ],

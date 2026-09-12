@@ -67,8 +67,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/anime",
-                ["parts"] = {
-                  "anime",
+                ["segments"] = {
+                  {
+                    ["lit"] = "anime",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -80,6 +82,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "anime",
                 },
               },
             },

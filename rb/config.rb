@@ -79,8 +79,10 @@ module KitsuConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/anime",
-                  "parts" => [
-                    "anime",
+                  "segments" => [
+                    {
+                      "lit" => "anime",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -93,6 +95,9 @@ module KitsuConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "anime",
+                  ],
                 },
               ],
             },
