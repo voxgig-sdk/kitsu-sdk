@@ -105,7 +105,7 @@ local result, err = client:Anime():load({ filter_text = "example" })
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/kitsu` | publish pending — [install from git tag](https://github.com/voxgig-sdk/kitsu-sdk/releases) |
+| TypeScript | `@voxgig-sdk/kitsu-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/kitsu-sdk/releases) |
 | Python | `voxgig-sdk-kitsu` | publish pending — [install from git tag](https://github.com/voxgig-sdk/kitsu-sdk/releases) |
 | PHP | `voxgig-sdk/kitsu` | publish pending — [install from git tag](https://github.com/voxgig-sdk/kitsu-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/kitsu-sdk/go` | `go get github.com/voxgig-sdk/kitsu-sdk/go@latest` |
@@ -119,7 +119,7 @@ local result, err = client:Anime():load({ filter_text = "example" })
 ### TypeScript
 
 ```ts
-import { KitsuSDK } from '@voxgig-sdk/kitsu'
+import { KitsuSDK } from '@voxgig-sdk/kitsu-sdk'
 
 const client = new KitsuSDK()
 
