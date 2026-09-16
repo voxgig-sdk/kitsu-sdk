@@ -1,12 +1,18 @@
 # Kitsu SDK feature factory
 
 from kitsu_sdk.feature.base_feature import KitsuBaseFeature
+from kitsu_sdk.feature.ratelimit_feature import KitsuRatelimitFeature
+from kitsu_sdk.feature.retry_feature import KitsuRetryFeature
 from kitsu_sdk.feature.test_feature import KitsuTestFeature
+from kitsu_sdk.feature.timeout_feature import KitsuTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: KitsuBaseFeature(),
+    "ratelimit": lambda: KitsuRatelimitFeature(),
+    "retry": lambda: KitsuRetryFeature(),
     "test": lambda: KitsuTestFeature(),
+    "timeout": lambda: KitsuTimeoutFeature(),
 }
 
 

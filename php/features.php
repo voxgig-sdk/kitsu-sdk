@@ -4,7 +4,10 @@ declare(strict_types=1);
 // Kitsu SDK feature factory
 
 require_once __DIR__ . '/feature/BaseFeature.php';
+require_once __DIR__ . '/feature/RatelimitFeature.php';
+require_once __DIR__ . '/feature/RetryFeature.php';
 require_once __DIR__ . '/feature/TestFeature.php';
+require_once __DIR__ . '/feature/TimeoutFeature.php';
 
 
 class KitsuFeatures
@@ -14,8 +17,14 @@ class KitsuFeatures
         switch ($name) {
             case "base":
                 return new KitsuBaseFeature();
+            case "ratelimit":
+                return new KitsuRatelimitFeature();
+            case "retry":
+                return new KitsuRetryFeature();
             case "test":
                 return new KitsuTestFeature();
+            case "timeout":
+                return new KitsuTimeoutFeature();
             default:
                 return new KitsuBaseFeature();
         }
@@ -31,7 +40,10 @@ class KitsuFeatures
     {
         switch ($name) {
             case "base":
+            case "ratelimit":
+            case "retry":
             case "test":
+            case "timeout":
                 return true;
             default:
                 return false;
