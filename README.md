@@ -105,12 +105,12 @@ local result, err = client:Anime():load({ filter_text = "example" })
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/kitsu-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/kitsu-sdk/releases) |
-| Python | `voxgig-sdk-kitsu` | publish pending — [install from git tag](https://github.com/voxgig-sdk/kitsu-sdk/releases) |
-| PHP | `voxgig-sdk/kitsu` | publish pending — [install from git tag](https://github.com/voxgig-sdk/kitsu-sdk/releases) |
+| TypeScript | `@voxgig-sdk/kitsu-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/kitsu-sdk/tags) |
+| Python | `voxgig-sdk-kitsu` | publish pending — [install from git tag](https://github.com/voxgig-sdk/kitsu-sdk/tags) |
+| PHP | `voxgig-sdk/kitsu` | publish pending — [install from git tag](https://github.com/voxgig-sdk/kitsu-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/kitsu-sdk/go` | `go get github.com/voxgig-sdk/kitsu-sdk/go@latest` |
-| Ruby | `voxgig-sdk-kitsu` | publish pending — [install from git tag](https://github.com/voxgig-sdk/kitsu-sdk/releases) |
-| Lua | `voxgig-sdk-kitsu` | publish pending — [install from git tag](https://github.com/voxgig-sdk/kitsu-sdk/releases) |
+| Ruby | `voxgig-sdk-kitsu` | publish pending — [install from git tag](https://github.com/voxgig-sdk/kitsu-sdk/tags) |
+| Lua | `voxgig-sdk-kitsu` | publish pending — [install from git tag](https://github.com/voxgig-sdk/kitsu-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/kitsu-sdk/go-cli` | `go install github.com/voxgig-sdk/kitsu-sdk/go-cli/cmd/kitsu@latest` |
 | Go MCP server | `github.com/voxgig-sdk/kitsu-sdk/go-mcp` | `go get github.com/voxgig-sdk/kitsu-sdk/go-mcp@latest` |
 
